@@ -1,0 +1,8 @@
+# Program specific
+logs/
+logScreen/
+channels/
+ytarchive
+
+# VSCode
+.vscode/

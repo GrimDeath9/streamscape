@@ -1,0 +1,39 @@
+[channels]
+folder_filepath = ''
+
+[cycle]
+mod_factor = 10
+interval = 10
+time_format = "%H:%M:%S"
+log_day_change = true # Currently not working
+
+[ytarchive]
+filepath = ''
+debug_level = 'error'
+merge = true
+retry_stream = 60
+retry_frag = 30
+other_args = [] # Other arguments to be added to ytarchive i.e. --vp9
+
+[output]
+directory = ''
+
+[output.format]
+style = '/%(channel)s/[%(upload_date)s]%(title)s_%(id)s' 
+quality = "best"
+mkv = true
+
+[output.thumbnail]
+embed = true
+separate = true
+
+[output.metadata]
+embed = true
+separate = true
+
+[logging]
+enabled = true
+directory = ''
+
+[discord]
+webhook = ''
