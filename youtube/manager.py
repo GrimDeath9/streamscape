@@ -57,5 +57,5 @@ def start(filepath = './config.toml'):
 			downloaded.append(stream.id)
 		now, next_time = __time_next(config.cycle.mod, config.cycle.interval)
 		print(f"[INFO] Finished run:\t{now.strftime(config.cycle.format)}")
-		print(f"\tNext run:\t{next_time.config.cycle.format}")
+		print(f"\tNext run:\t{next_time.strftime(config.cycle.format)}")
 		sleep(__time_til(next_time, config.cycle.format))
