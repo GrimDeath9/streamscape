@@ -4,5 +4,8 @@ logScreen/
 channels/
 ytarchive
 
+# Random pycache
+youtube/__pycache__/
+
 # VSCode
 .vscode/

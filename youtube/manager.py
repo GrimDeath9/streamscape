@@ -20,9 +20,8 @@ def __time_next(mod_factor: int, refresh: int):
 	next_time = (now+delta).replace(microsecond=0, second=0)
 	return now, next_time
 
-def __time_til(time: str, time_format: str):
-	next_time = datetime.strptime(f'{date.today()} {time}', f'%Y-%m-%d {time_format}')
-	return (next_time - datetime.now()).total_seconds()
+def __time_til(time: str):
+	return (time - datetime.now()).total_seconds()
 
 def __get_new_lives(channels: list[Channel], downloaded):
 	live_urls = [i.live_url for i in channels]
@@ -58,4 +57,4 @@ def start(filepath = './config.toml'):
 		now, next_time = __time_next(config.cycle.mod, config.cycle.interval)
 		print(f"[INFO] Finished run:\t{now.strftime(config.cycle.format)}")
 		print(f"\tNext run:\t{next_time.strftime(config.cycle.format)}")
-		sleep(__time_til(next_time, config.cycle.format))
+		sleep(__time_til(next_time))
