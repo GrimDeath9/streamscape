@@ -12,13 +12,13 @@ class Channel:
 		self.id = id
 		self.live_url = f'https://www.youtube.com/channel/{id}/live'
 
-def __time_next(mod_factor: int, refresh: int, time_format: str):
+def __time_next(mod_factor: int, refresh: int):
 	now = datetime.now()
 	refreshed = now + timedelta(minutes=refresh)
 	mod_refreshed = int(refreshed.strftime("%M")) % mod_factor
 	delta = timedelta(minutes=refresh - mod_refreshed)
 	next_time = (now+delta).replace(microsecond=0, second=0)
-	return now.strftime(time_format), next_time.strftime(time_format)
+	return now, next_time
 
 def __time_til(time: str, time_format: str):
 	next_time = datetime.strptime(f'{date.today()} {time}', f'%Y-%m-%d {time_format}')
@@ -55,6 +55,7 @@ def start(filepath = './config.toml'):
 			print(f"[INFO] Downloading {stream.id}")
 			StreamManager(config, stream).start()
 			downloaded.append(stream.id)
-		now, next_time = __time_next(config.cycle.mod, config.cycle.interval,config.cycle.format)
-		print(f"[INFO] Finished run:\t{now}\n\tNext run:\t{next_time}")
+		now, next_time = __time_next(config.cycle.mod, config.cycle.interval)
+		print(f"[INFO] Finished run:\t{now.strftime(config.cycle.format)}")
+		print(f"\tNext run:\t{next_time.config.cycle.format}")
 		sleep(__time_til(next_time, config.cycle.format))
